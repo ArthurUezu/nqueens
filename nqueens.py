@@ -27,7 +27,7 @@ def displaySolution( board ):
       for j in range( len( board ) ):
           if board[ i ][ j ]==QUEEN:
               list.append( str( j ) )
-  print "Solution (%2d queens): " % len( list ), ','.join( list ), ' '*20
+  print(f"Solution ({len(lista)}): {','.join(lista)} {' '*20}")
 
 def displayBoard( board, home=False ):
     """display the 2D array, showing empty cells as .
@@ -36,9 +36,9 @@ def displayBoard( board, home=False ):
     for i in range( len( board ) ):
         for j in range( len( board ) ):
             if board[i][j]==QUEEN: 
-               print 'Q',
+               print('Q'),
             else: 
-               print '.',
+               print('.'),
         print
     displaySolution( board )
     
@@ -98,8 +98,8 @@ def firstQueenAt( col, N, foundOne, queue ):
 
 def main():
     if len( sys.argv ) < 2:
-        print "Syntax: nqueens.py N"
-        print "        where N is the # of queens"
+        print ("Syntax: nqueens.py N")
+        print ("        where N is the # of queens")
         return
 
     #--- get dimension, create board, and solve! ---
@@ -126,7 +126,7 @@ def main():
     for p in list:
         p.join()
     
-    print "\nDone!"
+    print ("\nDone!")
 
 if __name__=="__main__":
     main()
