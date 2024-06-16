@@ -2,7 +2,6 @@ import sys
 import time
 import multiprocessing 
 import boto3
-from boto3.sqs.message import Message
 
 QUEEN = -10
 EMPTY = 0
