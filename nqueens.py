@@ -27,7 +27,7 @@ def displaySolution( board ):
       for j in range( len( board ) ):
           if board[ i ][ j ]==QUEEN:
               list.append( str( j ) )
-  print(f"Solution ({len(lista)}): {','.join(lista)} {' '*20}")
+  print(f"Solution ({len(list)}): {','.join(list)} {' '*20}")
 
 def displayBoard( board, home=False ):
     """display the 2D array, showing empty cells as .
