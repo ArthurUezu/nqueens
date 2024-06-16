@@ -1,15 +1,15 @@
 import sys
 import time
 import multiprocessing 
-import boto
-from boto.sqs.message import Message
+import boto3
+from boto3.sqs.message import Message
 
 QUEEN = -10
 EMPTY = 0
 # Replace 'YOUR_QUEUE_URL' with the actual Queue URL 
 queue_url = 'https://sqs.us-east-1.amazonaws.com/766835841524/nqueens-queue' 
 
-sqs = boto.client('sqs') 
+sqs = boto3.client('sqs') 
 
 
 def makeBoard( N ):
