@@ -8,7 +8,7 @@ EMPTY = 0
 # Replace 'YOUR_QUEUE_URL' with the actual Queue URL 
 queue_url = 'https://sqs.us-east-1.amazonaws.com/766835841524/nqueens-queue' 
 
-sqs = boto3.client('sqs') 
+sqs = boto3.client('sqs',region_name='us-east-1') 
 
 
 def makeBoard( N ):
