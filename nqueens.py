@@ -128,14 +128,14 @@ def execute(N):
 def main():
     while(1):
         response = sqs.receive_message(QueueUrl=queue_url, MaxNumberOfMessages=1) 
-        sleep(1000)
         if 'Messages' in response: 
             message = response['Messages'][0] 
             print('Received message:', message['Body'])    
             execute(message)
             # Delete the received message 
             sqs.delete_message(QueueUrl=queue_url, ReceiptHandle=message['ReceiptHandle']) 
-
+        sleep(5)
+        
    
 
 if __name__=="__main__":
