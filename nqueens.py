@@ -2,7 +2,7 @@ import sys
 import time
 import multiprocessing 
 import boto3
-
+from time import sleep
 QUEEN = -10
 EMPTY = 0
 # Replace 'YOUR_QUEUE_URL' with the actual Queue URL 
