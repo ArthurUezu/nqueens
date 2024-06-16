@@ -1,9 +1,13 @@
 import sys
 import time
 import multiprocessing 
+import boto
+from boto.sqs.message import Message
 
 QUEEN = -10
 EMPTY = 0
+# Replace 'YOUR_QUEUE_URL' with the actual Queue URL 
+queue_url = 'https://sqs.us-east-1.amazonaws.com/766835841524/nqueens-queue' 
 
 
 
@@ -94,17 +98,8 @@ def firstQueenAt( col, N, foundOne, queue ):
         foundOne.value = 1
         queue.put( board )
         #displayBoard( board )
-
-
-def main():
-    if len( sys.argv ) < 2:
-        print ("Syntax: nqueens.py N")
-        print ("        where N is the # of queens")
-        return
-
-    #--- get dimension, create board, and solve! ---
-    N = int( sys.argv[1] )
-
+def execute(N):
+     #--- get dimension, create board, and solve! ---
     # set bool to True to display progress...
     list = []
     foundOne = multiprocessing.Value( 'i', 0 ) # create shared memory value
@@ -127,6 +122,19 @@ def main():
         p.join()
     
     print ("\nDone!")
+
+def main():
+    while(1):
+        response = sqs.receive_message(QueueUrl=queue_url, MaxNumberOfMessages=1) 
+        sleep(1000)
+        if 'Messages' in response: 
+            message = response['Messages'][0] 
+            print('Received message:', message['Body'])    
+            execute(message)
+            # Delete the received message 
+            sqs.delete_message(QueueUrl=queue_url, ReceiptHandle=message['ReceiptHandle']) 
+
+   
 
 if __name__=="__main__":
     main()
